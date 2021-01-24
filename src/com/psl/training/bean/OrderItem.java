@@ -1,11 +1,14 @@
 package com.psl.training.bean;
 
-import com.psl.training.bean.StockItem;
+
 
 public class OrderItem {
 	
 		StockItem stockItem;
 		int numberOfItems;
+		public OrderItem() {
+			
+		}
 		public OrderItem(StockItem stockItem, int numberOfItems) {
 			super();
 			this.stockItem = stockItem;
@@ -14,7 +17,19 @@ public class OrderItem {
 		
 		public double getTotal()
 		{
-			return (stockItem.itemPrice)*numberOfItems;
+			return (stockItem.getItemPrice())*numberOfItems;
+		}
+		public int getNumberOfItems() {
+			return numberOfItems;
+		}
+		public void setNumberOfItems(int numberOfItems) {
+			this.numberOfItems = numberOfItems;
+		}
+		public StockItem getStockItem() {
+			return stockItem;
+		}
+		public void setStockItem(StockItem stockItem) {
+			this.stockItem = stockItem;
 		}
 		
 }

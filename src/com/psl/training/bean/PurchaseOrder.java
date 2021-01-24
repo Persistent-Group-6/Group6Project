@@ -1,26 +1,28 @@
 package com.psl.training.bean;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
-
-import com.psl.training.bean.OrderItem;
 import com.psl.training.bean.PurchaseOrder;
-import com.psl.training.bean.StockItem;
-import com.psl.training.bean.Customer;
 
 public class PurchaseOrder {
 	StockItem stockItem;
 	Customer customer;
 	 int poNumber;
-	  Date orderDate;
+	Date orderDate;
 	  Date shipDate;
 	 private Date expiryDate;
 	  private boolean shipStatus;
-	 private OrderItem[] orderItems;
+	 private List<OrderItem> orderItems;
 	 PurchaseOrder po=new PurchaseOrder();
-	  public void setshippedstatus(boolean shipStatus)
+	  public Date getShipDate() {
+		return shipDate;
+	}
+	public void setShipDate(Date shipDate) {
+		this.shipDate = shipDate;
+	}
+	public void setshippedstatus(boolean shipStatus)
 	 
 	  {
 		  this.shipStatus=shipStatus;
@@ -32,16 +34,22 @@ public class PurchaseOrder {
 	 public double sumItems()
 	 {
 		 double s=0;
-		 int len=orderItems.length;
+		 int len=orderItems.size();
 		 for(int i=0;i<len; i++)
 		 {
-			 if(orderItems[i]==null)
+			 if(orderItems.get(i)==null)
 				 break;
-			 s+=orderItems[i].getTotal();
+			 s+=orderItems.get(i).getTotal();
 			 
 		 }
 		 return s;
 	 }
+	 public int getPoNumber() {
+			return poNumber;
+		}
+		public void setPoNumber(int poNumber) {
+			this.poNumber = poNumber;
+		}
 	 public void setshipDate(Date date)
 	 {
 		 shipDate=date;
@@ -62,12 +70,12 @@ public class PurchaseOrder {
 		 orderDate=orderDt;
 		 
 	 }
-	 public void setOrderItems(OrderItem[] orderItems)
+	 public void setOrderItems(List<OrderItem> orderItems)
 	 {
 		 this.orderItems=orderItems;
 		 
 	 }
-	 public OrderItem[] getOrderItems()
+	 public List<OrderItem> getOrderItems()
 	 {
 		 return orderItems;
 	 }
@@ -75,7 +83,7 @@ public class PurchaseOrder {
 	 {
 		 if(orderDate==expiryDate)
 		 {
-			 return stockItem.itemPrice*0.50;
+			 return stockItem.getItemPrice()*0.50;
 		 }
 		 return 0;
 	 }
@@ -104,6 +112,12 @@ public class PurchaseOrder {
 	{
 		System.out.println(poNumber+" "+ orderItems+" "+ customer.getStreet()+" "+ customer.getCity()+" "+customer.getState()
 				+" "+customer.getZip());
+	}
+	public Date getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
 	 
 
