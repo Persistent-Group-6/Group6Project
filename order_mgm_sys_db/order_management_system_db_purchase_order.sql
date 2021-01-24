@@ -26,7 +26,9 @@ CREATE TABLE `purchase_order` (
   `poNumber` int(11) NOT NULL,
   `orderDate` date DEFAULT NULL,
   `shipDate` date DEFAULT NULL,
-  PRIMARY KEY (`poNumber`)
+  `customerNo` int(11) NOT NULL,
+  PRIMARY KEY (`poNumber`),
+  foreign key (`customerNo`) references customer(`customerNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -98,7 +98,7 @@ public class PurchaseOrder {
 	{
 		List<OrderItem[]> lo=new ArrayList<>();
 		Iterator it=lo.iterator();
-		return ;
+		return lo;
 	}
 	public void generateBill()
 	{
