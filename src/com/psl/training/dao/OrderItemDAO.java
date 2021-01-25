@@ -1,11 +1,13 @@
  package com.psl.training.dao;
 
 import java.sql.Connection;
+//import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import com.psl.training.bean.OrderItem;
@@ -68,17 +70,16 @@ public class OrderItemDAO {
 		}catch (Exception ex) {
 		}
 	}
-	  public void updateOrderItem(OrderItem o,StockItem s) throws SQLException
+	  public void updateOrderItem(OrderItem o,StockItem s,int po) throws SQLException
 	    {
-			PreparedStatement ps = cn.prepareStatement("UPDATE order_item SET  numberOfItems=?, stockItemNo=?");
-		
-			 
-		
+			PreparedStatement ps = cn.prepareStatement("UPDATE order_item SET  numberOfItems=?, stockItemNo=? where purchaseOrderNo=?");
 			ps.setInt(1, o.getNumberOfItems());
 			ps.setInt(2, s.getItemNo());
+			ps.setInt(3, po);
 			//;ps.setInt(3, o.getPurchaseOrder());
 		
 			ps.executeUpdate();
 			ps.close();
 	}
+	  
 }

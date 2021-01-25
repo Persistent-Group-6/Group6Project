@@ -1,6 +1,7 @@
 package com.psl.training.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,6 +68,30 @@ public class PurchaseOrderDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+	public List<PurchaseOrder> orderBetween(Date d1,Date d2)
+	{
+		List<PurchaseOrder> l = new ArrayList<PurchaseOrder>();
+		PurchaseOrder p = null;
+		try {
+			Statement stmt=cn.createStatement();
+			String qry="select * from purchase_order where orderDate between ? and ?";
+			ResultSet rs=stmt.executeQuery(qry);
+			while(rs.next()){
+				p=new PurchaseOrder();
+				p.setPoNumber(rs.getInt(1));
+				p.setOrderDate(rs.getDate(2));
+				p.setshipDate(rs.getDate(3));
+				p.setOrderItems(odao.showOrderItems(p.getPoNumber()));
+			    l.add(p);
+			    p = null;
+			}
+		}
+		catch(SQLException e) {
+			
+		}
+			
+		return l;
 	}
 	 /* public void updatePurchaseOrder(PurchaseOrder p) throws SQLException
 	    {

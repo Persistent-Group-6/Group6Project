@@ -22,9 +22,9 @@ public class OrderItemService {
 	
 	
 	
-	public void updateOrderItem(OrderItem o,StockItem s) throws SQLException{
+	public void updateOrderItem(OrderItem o,StockItem s,int po) throws SQLException{
 		// code to update OrderItem object
-		empDAO.updateOrderItem(o, s);
+		empDAO.updateOrderItem(o, s, po);
 	}
 	
 	public void deleteOrderItems(int id){

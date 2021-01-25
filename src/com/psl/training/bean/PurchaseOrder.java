@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
 import com.psl.training.bean.PurchaseOrder;
+import com.psl.training.service.PurchaseOrderService;
 
 public class PurchaseOrder {
 	StockItem stockItem;
@@ -15,7 +16,11 @@ public class PurchaseOrder {
 	 private Date expiryDate;
 	  private boolean shipStatus;
 	 private List<OrderItem> orderItems;
-	 PurchaseOrder po=new PurchaseOrder();
+	 PurchaseOrderService pos;
+	public PurchaseOrder() {
+		// TODO Auto-generated constructor stub
+		PurchaseOrderService pos = new PurchaseOrderService();
+	}
 	  public Date getShipDate() {
 		return shipDate;
 	}
@@ -102,10 +107,10 @@ public class PurchaseOrder {
 		 return ol; 
 		 
 	 }
-	public List<OrderItem[]> orderBetween(Date d1,Date d2)
+	public List<PurchaseOrder> orderBetween(Date d1,Date d2,int po)
 	{
-		List<OrderItem[]> lo=new ArrayList<>();
-		Iterator it=lo.iterator();
+		List<PurchaseOrder> lo=new ArrayList<PurchaseOrder>();
+		lo = pos.showPurchaseOrdersBetw2Dates(d1, d2);
 		return lo;
 	}
 	public void generateBill()

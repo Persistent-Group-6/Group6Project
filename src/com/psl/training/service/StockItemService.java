@@ -20,7 +20,9 @@ public class StockItemService {
 		return poDAO.showStockItemById(no);
 	}
 	
-	
+	public List<StockItem> showStockItems(){
+		return poDAO.displayStocks();
+	}
 	
 	public void updateStock(StockItem s) throws SQLException{
 		// code to update Stock object

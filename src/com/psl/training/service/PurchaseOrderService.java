@@ -1,5 +1,6 @@
 
 package com.psl.training.service;
+import java.sql.Date;
 import java.util.List;
 
 import com.psl.training.dao.PurchaseOrderDAO;
@@ -21,7 +22,9 @@ public class PurchaseOrderService {
 			return poDAO.showPurchaseOrders(custNo);
 		}
 		
-		
+		public List<PurchaseOrder> showPurchaseOrdersBetw2Dates(Date d1,Date d2){
+			return poDAO.orderBetween(d1, d2);
+		}
 		
 	/*	public void updatePurchaseOrders(PurchaseOrder o){
 			// code to update PurchaseOrder object
