@@ -68,5 +68,18 @@ public class PurchaseOrderDAO {
 			e1.printStackTrace();
 		}
 	}
+	 /* public void updatePurchaseOrder(PurchaseOrder p) throws SQLException
+	    {
+			PreparedStatement ps = cn.prepareStatement("UPDATE purchase_order SET  poNumber=?, orderDate=?, shipDate=?, customerNo=?");
+		
+			 
+		
+			
+		
+			 
+		
+			ps.executeUpdate();
+			ps.close();
+	    }*/
 
 }

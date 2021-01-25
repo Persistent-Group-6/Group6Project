@@ -102,9 +102,27 @@ Connection cn=DBConnection.getConnection();
 		return "Deleted Successfully";
 	}
 	//update customer data
-	public void updateCustomerById(Customer c){
+	public void updateCustomerById(Customer c) throws SQLException{
 		// code to update Customer object
-	}
+		
+			PreparedStatement ps = cn.prepareStatement("UPDATE Customer SET  customerName=?, homePhone=?, cellPhone=?, workPhone=?, street=?, city=?, state=?, zip=? WHERE customerNumber=?");
+		
+			 
+		
+			ps.setString(1, c.getCustomerName());
+			ps.setString(2, c.getHomePhone());
+			ps.setString(3, c.getCellPhone());
+			ps.setString(4, c.getWorkPhone());
+			ps.setString(5, c.getStreet());
+			ps.setString(6, c.getCity());
+			ps.setString(7, c.getState());
+			ps.setString(8, c.getZip());
+		
+			 
+		
+			ps.executeUpdate();
+			ps.close();
+	    }
 	// show purchase orders
 	
 }

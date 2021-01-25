@@ -46,12 +46,12 @@ public class StockDAO {
 			e1.printStackTrace();
 		}
 	}
-	public List<StockItem> displayStocks(int id){
+	public List<StockItem> displayStocks(){
 		List<StockItem> l= new ArrayList<StockItem>();
 		StockItem si=null;
 		try{
 			Statement stmt=cn.createStatement();
-		String qry="select * from stock_item where item_Number="+id;
+		String qry="select * from stock_item";
 		ResultSet rs=stmt.executeQuery(qry);
 		while(rs.next()){
 			si = new StockItem();
@@ -79,4 +79,17 @@ public class StockDAO {
 		}
 		return "Deleted Successfully";
 	}
+	
+	  public void updateStock(StockItem s) throws SQLException
+	    {
+			PreparedStatement ps = cn.prepareStatement("UPDATE stock_item SET item_Number=?, itemDescription=?, itemPrice=?, expiryDate=?"); 
+			 
+		
+			ps.setInt(1, s.getItemNo());
+			ps.setString(2, s.getItemDesc());
+			ps.setDouble(3, s.getItemPrice());
+			ps.setDate(4, s.getExpiryDate());
+			ps.executeUpdate();
+			ps.close();
+	    }
 }
