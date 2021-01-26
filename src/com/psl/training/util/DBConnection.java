@@ -10,10 +10,10 @@ public final class DBConnection {
 	private DBConnection(){
 		
 	}
-	static String driverClass="com.mysql.jdbc.Driver";
-	static String url="jdbc:mysql://localhost/order_management_system_db";
+	static String driverClass="com.mysql.cj.jdbc.Driver";
+	static String url="jdbc:mysql://localhost/abhishek";
 	static String username="root";
-	static String password="123";
+	static String password="1289";
 	
 	
 	public static Connection getConnection(){

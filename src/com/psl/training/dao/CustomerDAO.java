@@ -19,7 +19,7 @@ Connection cn=DBConnection.getConnection();
 		// code to insert Customer
 		
 		try {
-			PreparedStatement	pstmt = cn.prepareStatement("insert into Customers values(?,?,?,?,?,?,?)");
+			PreparedStatement	pstmt = cn.prepareStatement("insert into Customer values(?,?,?,?,?,?,?)");
 			
 			pstmt.setInt(1, c.getCustomerNumber());
 			pstmt.setString(2, c.getCustomerName());
@@ -45,7 +45,7 @@ Connection cn=DBConnection.getConnection();
 		Customer c=null;
 		try{
 			Statement stmt=cn.createStatement();
-		String qry="select * from Customers where customerNumber="+id;
+		String qry="select * from Customer where customerNumber="+id;
 		ResultSet rs=stmt.executeQuery(qry);
 		if(rs.next()){
 			c=new Customer();
@@ -69,7 +69,7 @@ Connection cn=DBConnection.getConnection();
 		Customer c=null;
 		try{
 			Statement stmt=cn.createStatement();
-		String qry="select * from Customers";
+		String qry="select * from Customer";
 		ResultSet rs=stmt.executeQuery(qry);
 		while(rs.next()){
 			c=new Customer();
@@ -82,7 +82,7 @@ Connection cn=DBConnection.getConnection();
 			c.setState(rs.getString(7));
 			c.setZip(rs.getString(8));
 		    l.add(c);
-		    c = null;
+	
 		}
 		
 		}catch (Exception ex) {

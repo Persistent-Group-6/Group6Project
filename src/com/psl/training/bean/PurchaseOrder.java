@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
 import com.psl.training.bean.PurchaseOrder;
+import com.psl.training.service.OrderItemService;
 import com.psl.training.service.PurchaseOrderService;
 
 public class PurchaseOrder {
@@ -13,13 +14,14 @@ public class PurchaseOrder {
 	 int poNumber;
 	Date orderDate;
 	  Date shipDate;
-	 private Date expiryDate;
 	  private boolean shipStatus;
 	 private List<OrderItem> orderItems;
 	 PurchaseOrderService pos;
+	 OrderItemService ois;
 	public PurchaseOrder() {
 		// TODO Auto-generated constructor stub
-		PurchaseOrderService pos = new PurchaseOrderService();
+		pos = new PurchaseOrderService();
+		ois = new OrderItemService();
 	}
 	  public Date getShipDate() {
 		return shipDate;
@@ -60,15 +62,6 @@ public class PurchaseOrder {
 		 shipDate=date;
 		 
 	 }
-	 public void setExpiryDate(Date expiryDate)
-	 {
-		 this.expiryDate=expiryDate;
-		 
-	 }
-	 public Date getExpiryDate()
-	 {
-		 return this.expiryDate;
-	 }
 	 public void create(int poNo,Date orderDt)
 	 {
 		 poNumber=poNo;
@@ -86,26 +79,32 @@ public class PurchaseOrder {
 	 }
 	 public double getDiscount()
 	 {
-		 if(orderDate==expiryDate)
+		 if(orderDate==stockItem.getExpiryDate())
 		 {
 			 return stockItem.getItemPrice()*0.50;
 		 }
 		 return 0;
 	 }
-	public List<PurchaseOrder> removeExpiredItem()
+	public  List<PurchaseOrder> removeExpiredItem(int custNo)
 	 {
-		 List<PurchaseOrder> ol=new ArrayList<>();
-		 Iterator it=ol.iterator();
+		 List<PurchaseOrder> po=new ArrayList<>();
+		 po = pos.showPurchaseOrders(custNo);
+		 Iterator<PurchaseOrder> it=po.iterator();
 		 while(it.hasNext())
 		 {
-			 if(new PurchaseOrder().orderDate==new PurchaseOrder().expiryDate)
-			 {
-				ol.remove(new PurchaseOrder());
+			 PurchaseOrder p =  (PurchaseOrder)it.next();
+			 List<OrderItem> oi = new ArrayList<OrderItem>();
+			 oi = p.getOrderItems();
+			 Iterator<OrderItem> it1=oi.iterator();
+			 while(it1.hasNext()) {
+				 OrderItem o = (OrderItem)it1.next();
+				 if(p.getOrderDate()==o.getStockItem().getExpiryDate()) {
+					 ois.deleteOrderItems(p.getPoNumber());
+				 }
 			 }
-		 }
 			 
-		 return ol; 
-		 
+		 } 
+		 return pos.showPurchaseOrders(custNo);
 	 }
 	public List<PurchaseOrder> orderBetween(Date d1,Date d2,int po)
 	{
