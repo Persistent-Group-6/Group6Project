@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+//import java.util.Iterator;
 import java.util.List;
 
 import com.psl.training.bean.OrderItem;
@@ -21,12 +21,12 @@ public class OrderItemDAO {
 		// TODO Auto-generated constructor stub
 		sdao = new StockDAO();
 	}
-	public void createOrderItems(List<OrderItem> orderItem,int po) {
+	public void createOrderItems(List<OrderItem> l,int po) {
 		// TODO Auto-generated method stub
-		for (OrderItem o : orderItem) {
+		for(OrderItem o:l) {
 			try {
-				PreparedStatement	pstmt = cn.prepareStatement("insert into order_item values(?,?,?)");
 				
+				PreparedStatement	pstmt = cn.prepareStatement("insert into order_item values(?,?,?)");
 				pstmt.setInt(1, o.getNumberOfItems());
 				pstmt.setInt(2, o.getStockItem().getItemNo());
 				pstmt.setInt(3, po);

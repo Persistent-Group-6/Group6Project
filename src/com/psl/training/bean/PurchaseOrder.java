@@ -1,7 +1,7 @@
 package com.psl.training.bean;
 
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import com.psl.training.bean.PurchaseOrder;
@@ -12,8 +12,8 @@ public class PurchaseOrder {
 	StockItem stockItem;
 	Customer customer;
 	 int poNumber;
-	Date orderDate;
-	  Date shipDate;
+	String orderDate;
+	  String shipDate;
 	  private boolean shipStatus;
 	 private List<OrderItem> orderItems;
 	 PurchaseOrderService pos;
@@ -23,11 +23,11 @@ public class PurchaseOrder {
 		pos = new PurchaseOrderService();
 		ois = new OrderItemService();
 	}
-	  public Date getShipDate() {
+	  public String getShipDate() {
 		return shipDate;
 	}
-	public void setShipDate(Date shipDate) {
-		this.shipDate = shipDate;
+	public void setShipDate(String localDate) {
+		this.shipDate = localDate;
 	}
 	public void setshippedstatus(boolean shipStatus)
 	 
@@ -57,12 +57,12 @@ public class PurchaseOrder {
 		public void setPoNumber(int poNumber) {
 			this.poNumber = poNumber;
 		}
-	 public void setshipDate(Date date)
+	 public void setshipDate(String date)
 	 {
 		 shipDate=date;
 		 
 	 }
-	 public void create(int poNo,Date orderDt)
+	 public void create(int poNo,String orderDt)
 	 {
 		 poNumber=poNo;
 		 orderDate=orderDt;
@@ -79,7 +79,7 @@ public class PurchaseOrder {
 	 }
 	 public double getDiscount()
 	 {
-		 if(orderDate==stockItem.getExpiryDate())
+		 if(orderDate.equals(stockItem.getExpiryDate()))
 		 {
 			 return stockItem.getItemPrice()*0.50;
 		 }
@@ -117,10 +117,10 @@ public class PurchaseOrder {
 		System.out.println(poNumber+" "+ orderItems+" "+ customer.getStreet()+" "+ customer.getCity()+" "+customer.getState()
 				+" "+customer.getZip());
 	}
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 	 

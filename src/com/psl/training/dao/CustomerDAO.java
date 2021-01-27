@@ -19,16 +19,17 @@ Connection cn=DBConnection.getConnection();
 		// code to insert Customer
 		
 		try {
-			PreparedStatement	pstmt = cn.prepareStatement("insert into Customer values(?,?,?,?,?,?,?)");
+			PreparedStatement	pstmt = cn.prepareStatement("insert into Customer values(?,?,?,?,?,?,?,?,?)");
 			
 			pstmt.setInt(1, c.getCustomerNumber());
 			pstmt.setString(2, c.getCustomerName());
 			pstmt.setString(3, c.getHomePhone());
-			pstmt.setString(4, c.getWorkPhone());
-			pstmt.setString(5, c.getStreet());
-			pstmt.setString(5, c.getCity());
-			pstmt.setString(6, c.getState());
-			pstmt.setString(7, c.getZip());
+			pstmt.setString(4, c.getCellPhone());
+			pstmt.setString(5, c.getWorkPhone());
+			pstmt.setString(6, c.getStreet());
+			pstmt.setString(7, c.getCity());
+			pstmt.setString(8, c.getState());
+			pstmt.setString(9, c.getZip());
 			pstmt.executeUpdate();
 		
 		} catch (SQLException e1) {

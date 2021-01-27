@@ -26,8 +26,7 @@ CREATE TABLE `order_item` (
   `numberOfItems` int(11) NOT NULL,
   `stockItemNo` int(11) NOT NULL,
   `purchaseOrderNo` int(11) NOT NULL,
-  foreign key (`stockItemNo`) references stock_item(`item_Number`),
-  foreign key (`purchaseOrderNo`) references stock_item(`poNumber`)
+  foreign key (`purchaseOrderNo`) references purchase_order(`poNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

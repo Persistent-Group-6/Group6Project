@@ -24,13 +24,45 @@ public class StockDAO {
 			s.setItemNo(rs.getInt(1));
 			s.setItemDesc(rs.getString(2));
 			s.setItemPrice(rs.getDouble(3));
-			s.setExpiryDate(rs.getDate(4));
+			s.setExpiryDate(rs.getString(4));
 		}
 		
 		}catch (Exception ex) {
 		}
 		return s;
 	}
+	public StockItem showStockItemByName(String name) {
+		StockItem s = new StockItem();
+		try{
+			Statement stmt=cn.createStatement();
+		String qry="select * from stock_item where itemDescription=\""+name+"\"";
+		ResultSet rs=stmt.executeQuery(qry);
+		if(rs.next()){
+			s.setItemNo(rs.getInt(1));
+			s.setItemDesc(rs.getString(2));
+			s.setItemPrice(rs.getDouble(3));
+			s.setExpiryDate(rs.getString(4));
+		}
+		
+		}catch (Exception ex) {
+		}
+		return s;
+	}
+	public int showStockItemIdByName(String name) {
+		int n = 0;
+		try{
+			Statement stmt=cn.createStatement();
+		String qry="select item_Number from stock_item where itemDescription=\""+name+"\"";
+		ResultSet rs=stmt.executeQuery(qry);
+		if(rs.next()){
+			n = rs.getInt("item_Number");
+		}
+		
+		}catch (Exception ex) {
+		}
+		return n;
+	}
+	
 	public void createStockItem(StockItem si) {
 		try {
 			PreparedStatement	pstmt = cn.prepareStatement("insert into stock_item values(?,?,?,?)");
@@ -38,7 +70,7 @@ public class StockDAO {
 			pstmt.setInt(1, si.getItemNo());
 			pstmt.setString(2, si.getItemDesc());
 			pstmt.setDouble(3, si.getItemPrice());
-			pstmt.setDate(4, si.getExpiryDate());
+			pstmt.setString(4, si.getExpiryDate());
 			pstmt.executeUpdate();
 		
 		} catch (SQLException e1) {
@@ -58,7 +90,7 @@ public class StockDAO {
 			si.setItemNo(rs.getInt(1));
 			si.setItemDesc(rs.getString(2));
 			si.setItemPrice(rs.getDouble(3));
-			si.setExpiryDate(rs.getDate(4));
+			si.setExpiryDate(rs.getString(4));
 		    l.add(si);
 		    si = null;
 		}
@@ -88,7 +120,7 @@ public class StockDAO {
 			ps.setInt(1, s.getItemNo());
 			ps.setString(2, s.getItemDesc());
 			ps.setDouble(3, s.getItemPrice());
-			ps.setDate(4, s.getExpiryDate());
+			ps.setString(4, s.getExpiryDate());
 			ps.executeUpdate();
 			ps.close();
 	    }

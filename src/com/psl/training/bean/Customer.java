@@ -23,7 +23,7 @@ public class Customer {
 	}
 
 	public Customer(int customerNumber, String customerName, String homePhone, String cellPhone, String workPhone,
-			String street, String city,String state, String zip, List<PurchaseOrder> po) {
+			String street, String city,String state, String zip) {
 		super();
 		this.customerNumber = customerNumber;
 		this.customerName = customerName;
@@ -34,7 +34,6 @@ public class Customer {
 		this.city = city;
 		this.state=state;
 		this.zip = zip;
-		this.po = po;
 	}
 
 	public int getCustomerNumber() {

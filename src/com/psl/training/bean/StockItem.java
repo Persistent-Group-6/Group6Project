@@ -1,26 +1,24 @@
 package com.psl.training.bean;
 
-import java.sql.Date;
-
 public class StockItem {
 	private int itemNo;
 	private String itemDesc;
 	private double itemPrice;
 	private int quantity;
-	private Date expiryDate;
+	private String expiryDate;
 	
 	public StockItem() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public StockItem(int itemNo, String itemDesc, double price, int quantity,Date expirydate) {
+	public StockItem(int itemNo, String itemDesc, double price, int quantity,String expirydate) {
 		super();
 		this.itemNo = itemNo;
 		this.itemDesc = itemDesc;
 		this.itemPrice = price;
 		this.quantity = quantity;
-		this.setExpiryDate(expirydate);
+		this.expiryDate = expirydate;
 	}
 
 
@@ -71,12 +69,12 @@ public class StockItem {
 	}
 
 
-	public Date getExpiryDate() {
+	public String getExpiryDate() {
 		return expiryDate;
 	}
 
 
-	public void setExpiryDate(Date expiryDate) {
+	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 

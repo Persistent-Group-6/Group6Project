@@ -20,6 +20,13 @@ public class StockItemService {
 		return poDAO.showStockItemById(no);
 	}
 	
+	public StockItem showStockItemByName(String name){
+		return poDAO.showStockItemByName(name);
+	}
+	public int showStockItemIdByName(String name){
+		return poDAO.showStockItemIdByName(name);
+	}
+	
 	public List<StockItem> showStockItems(){
 		return poDAO.displayStocks();
 	}

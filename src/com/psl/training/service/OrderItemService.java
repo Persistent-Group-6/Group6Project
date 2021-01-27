@@ -12,8 +12,8 @@ public class OrderItemService {
 	OrderItemDAO empDAO=new OrderItemDAO();
 	
 	
-	public void insertOrderItem(List<OrderItem> orderItem,int po){
-		empDAO.createOrderItems(orderItem,po);
+	public void insertOrderItem(List<OrderItem> o,int po){
+		empDAO.createOrderItems(o,po);
 	}
 	
 	public List<OrderItem> showOrderItems(int id){
