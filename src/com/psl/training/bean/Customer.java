@@ -5,6 +5,7 @@ import java.util.List;
 public class Customer {
 	//variables
 	private int customerNumber;
+	private int custnumber;
 	private String customerName;
 	private String homePhone;
 	private String cellPhone;
