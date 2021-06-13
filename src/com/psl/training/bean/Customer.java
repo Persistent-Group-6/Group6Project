@@ -6,6 +6,7 @@ public class Customer {
 	//variables
 	private int customerNumber;
 	private int custnumber;
+	private int cut;
 	private String customerName;
 	private String homePhone;
 	private String cellPhone;
